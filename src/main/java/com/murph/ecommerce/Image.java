@@ -1,32 +1,29 @@
-package com.murph.ecommerce.entity;
+package com.murph.ecommerce;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import java.io.Serializable;
+import javax.persistence.*;
 
+/**
+ * The persistent class for the image database table.
+ *
+ */
 @Entity
-public class Image {
+public class Image implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nameImage;
+
+    //bi-directional many-to-one association to Product
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
 
-    public Image() {
-    }
-
-    public Image(int id, String nameImage, Product product) {
-        this.id = id;
-        this.nameImage = nameImage;
-        this.product = product;
-    }
-
+    //bi-directional many-to-one association to Product
     public int getId() {
         return id;
     }
@@ -49,6 +46,9 @@ public class Image {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Image() {
     }
 
 }

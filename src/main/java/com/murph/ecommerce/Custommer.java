@@ -1,29 +1,38 @@
-package com.murph.ecommerce.entity;
+package com.murph.ecommerce;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
+/**
+ * The persistent class for the custommer database table.
+ *
+ */
 @Entity
-public class Custommer {
+public class Custommer implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int custommerId;
-    private String nameCustommer;
-    private String phone;
+
     private String address;
-    @OneToOne
-    @JoinColumn(name ="user-name" )
+
+    private String nameCustommer;
+
+    private String phone;
+
+    //bi-directional many-to-one association to Account
+    @ManyToOne
+    @JoinColumn(name = "username")
     private Account account;
-    @OneToMany(mappedBy = "custommer", fetch = FetchType.LAZY)
+
+    //bi-directional many-to-one association to Account
+    //bi-directional many-to-one association to Order
+    @OneToMany(mappedBy = "custommer", fetch = FetchType.EAGER)
     private List<Order> orders;
-    
+
+    public Custommer() {
+    }
 
     public int getCustommerId() {
         return custommerId;
@@ -31,6 +40,14 @@ public class Custommer {
 
     public void setCustommerId(int custommerId) {
         this.custommerId = custommerId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getNameCustommer() {
@@ -49,12 +66,12 @@ public class Custommer {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public List<Order> getOrders() {
@@ -65,12 +82,4 @@ public class Custommer {
         this.orders = orders;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-    
 }
