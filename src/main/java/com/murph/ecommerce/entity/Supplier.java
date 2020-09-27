@@ -1,4 +1,4 @@
-package com.murph.ecommerce;
+package com.murph.ecommerce.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -19,7 +19,7 @@ public class Supplier implements Serializable {
     private String phone;
 
     //bi-directional many-to-one association to Product
-    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "supplier")
     private List<Product> products;
 
     public Supplier() {

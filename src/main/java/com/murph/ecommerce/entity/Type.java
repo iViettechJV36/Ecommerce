@@ -1,4 +1,4 @@
-package com.murph.ecommerce;
+package com.murph.ecommerce.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 public class Type implements Serializable {
 
-    private static final long serialVersionUID = 1L;
 
     @Id
     private int typeId;
@@ -19,7 +18,7 @@ public class Type implements Serializable {
     private String typeName;
 
     //bi-directional many-to-one association to Product
-    @OneToMany(mappedBy = "type", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "type")
     private List<Product> products;
 
     public Type() {

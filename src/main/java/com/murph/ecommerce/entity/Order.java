@@ -1,4 +1,4 @@
-package com.murph.ecommerce;
+package com.murph.ecommerce.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -32,7 +32,7 @@ public class Order implements Serializable {
     private Custommer custommer;
 
     //bi-directional many-to-one association to Orderdetail
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order")
     private List<Orderdetail> orderdetails;
 
     public Order() {

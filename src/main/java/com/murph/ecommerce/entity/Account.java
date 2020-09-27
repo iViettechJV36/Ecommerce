@@ -1,8 +1,7 @@
-package com.murph.ecommerce;
+package com.murph.ecommerce.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * The persistent class for the account database table.
@@ -17,12 +16,12 @@ public class Account implements Serializable {
     private String password;
 
     //bi-directional many-to-one association to Custommer
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    private List<Custommer> custommers;
+    @OneToOne(mappedBy = "account")
+    private Custommer custommer;
 
     //bi-directional many-to-one association to Role
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    private List<Role> roles;
+    @OneToOne(mappedBy = "account")
+    private Role role;
 
     public Account() {
     }
@@ -43,20 +42,22 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    public List<Custommer> getCustommers() {
-        return custommers;
+    public Custommer getCustommer() {
+        return custommer;
     }
 
-    public void setCustommers(List<Custommer> custommers) {
-        this.custommers = custommers;
+    public void setCustommer(Custommer custommer) {
+        this.custommer = custommer;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
+
+    
 
 }

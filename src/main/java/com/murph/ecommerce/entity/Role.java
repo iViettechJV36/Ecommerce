@@ -1,29 +1,29 @@
-package com.murph.ecommerce;
+package com.murph.ecommerce.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the role database table.
- * 
+ *
  */
 @Entity
 public class Role implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    private int id;
 
-	private int id;
+    private String role;
 
-	private String role;
+    //bi-directional many-to-one association to Account
+    @OneToOne
+    @JoinColumn(name = "username")
+    private Account account;
 
-	//bi-directional many-to-one association to Account
-	@ManyToOne
-	@JoinColumn(name="username")
-	private Account account;
-
-	public Role() {
-	}
+    public Role() {
+    }
 
     public int getId() {
         return id;
@@ -48,7 +48,5 @@ public class Role implements Serializable {
     public void setAccount(Account account) {
         this.account = account;
     }
-
-	
 
 }

@@ -1,4 +1,4 @@
-package com.murph.ecommerce;
+package com.murph.ecommerce.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -23,11 +23,11 @@ public class Product implements Serializable {
     private double price;
 
     //bi-directional many-to-one association to Image
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product")
     private List<Image> images;
 
     //bi-directional many-to-one association to Orderdetail
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product")
     private List<Orderdetail> orderdetails;
 
     //bi-directional many-to-one association to Supplier
