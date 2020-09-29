@@ -13,12 +13,9 @@ public class Supplier implements Serializable {
 
     @Id
     private String name;
-
+    private String phone;
     private String address;
 
-    private String phone;
-
-    //bi-directional many-to-one association to Product
     @OneToMany(mappedBy = "supplier")
     private List<Product> products;
 

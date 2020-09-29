@@ -11,13 +11,10 @@ import java.util.List;
 @Entity
 public class Type implements Serializable {
 
-
     @Id
     private int typeId;
-
     private String typeName;
 
-    //bi-directional many-to-one association to Product
     @OneToMany(mappedBy = "type")
     private List<Product> products;
 

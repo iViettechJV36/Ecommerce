@@ -3,10 +3,7 @@ package com.murph.ecommerce.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-/**
- * The persistent class for the image database table.
- *
- */
+
 @Entity
 public class Image implements Serializable {
 

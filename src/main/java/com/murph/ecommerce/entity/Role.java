@@ -12,12 +12,8 @@ public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
-
     private String role;
-
-    //bi-directional many-to-one association to Account
     @OneToOne
     @JoinColumn(name = "username")
     private Account account;

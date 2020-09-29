@@ -17,7 +17,7 @@ public class Account implements Serializable {
 
     //bi-directional many-to-one association to Custommer
     @OneToOne(mappedBy = "account")
-    private Custommer custommer;
+    private Customer customer;
 
     //bi-directional many-to-one association to Role
     @OneToOne(mappedBy = "account")
@@ -42,12 +42,12 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    public Custommer getCustommer() {
-        return custommer;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustommer(Custommer custommer) {
-        this.custommer = custommer;
+    public void setCustomer(Customer custommer) {
+        this.customer = custommer;
     }
 
     public Role getRole() {
@@ -57,7 +57,5 @@ public class Account implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
-
-    
 
 }

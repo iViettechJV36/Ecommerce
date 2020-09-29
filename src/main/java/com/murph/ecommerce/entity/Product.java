@@ -13,31 +13,23 @@ import java.util.List;
 public class Product implements Serializable {
 
     @Id
-
     private int productId;
-
-    private String description;
-
     private String productName;
-
+    private String description;
     private double price;
-
-    //bi-directional many-to-one association to Image
-    @OneToMany(mappedBy = "product")
-    private List<Image> images;
-
-    //bi-directional many-to-one association to Orderdetail
-    @OneToMany(mappedBy = "product")
-    private List<Orderdetail> orderdetails;
-
-    //bi-directional many-to-one association to Supplier
     @ManyToOne
+    @JoinColumn(name = "supplier_name")
     private Supplier supplier;
 
-    //bi-directional many-to-one association to Type
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
+
+    @OneToMany(mappedBy = "product")
+    private List<Image> images;
+
+    @OneToMany(mappedBy = "product")
+    private List<LineItem> lineItems;
 
     public Product() {
     }
@@ -82,12 +74,12 @@ public class Product implements Serializable {
         this.images = images;
     }
 
-    public List<Orderdetail> getOrderdetails() {
-        return orderdetails;
+    public List<LineItem> getLineItems() {
+        return lineItems;
     }
 
-    public void setOrderdetails(List<Orderdetail> orderdetails) {
-        this.orderdetails = orderdetails;
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
     }
 
     public Supplier getSupplier() {
